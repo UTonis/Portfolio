@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #0f0f13;
+            --card: #18181f;
+            --border: #2a2a35;
+            --accent: #6c63ff;
+            --accent-glow: rgba(108,99,255,0.35);
+            --text: #e8e8f0;
+            --muted: #7a7a9a;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(108,99,255,0.10) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .wrapper {
+            position: relative;
+            animation: fadeUp 0.6s ease both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid rgba(108,99,255,0.4);
+            border-radius: 100px;
+            padding: 6px 16px;
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            font-size: 52px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, #6c63ff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .desc {
+            font-size: 16px;
+            color: var(--muted);
+            margin-bottom: 44px;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: inherit;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            background: #7d75ff;
+            box-shadow: 0 6px 28px var(--accent-glow);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .stats {
+            display: flex;
+            gap: 48px;
+            justify-content: center;
+            margin-top: 64px;
+            padding-top: 48px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-item {
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .stat-item:nth-child(2) { animation-delay: 0.1s; }
+        .stat-item:nth-child(3) { animation-delay: 0.2s; }
+
+        .stat-num {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="badge">Member System</div>
+    <h1>환영합니다<br><span>시작해볼까요?</span></h1>
+    <p class="desc">회원가입 후 다양한 서비스를 이용해보세요.<br>이미 계정이 있다면 로그인하세요.</p>
+
+    <div class="buttons">
+        <a th:href="@{/members/new}" class="btn btn-primary">회원가입</a>
+        <a th:href="@{/login}" class="btn btn-secondary">로그인</a>
+    </div>
+
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-num">🔐</div>
+            <div class="stat-label">안전한 로그인</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">⚡</div>
+            <div class="stat-label">빠른 회원가입</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">🛡️</div>
+            <div class="stat-label">개인정보 보호</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
